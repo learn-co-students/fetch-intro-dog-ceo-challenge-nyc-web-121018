@@ -2,7 +2,7 @@ console.log('%c HI', 'color: firebrick')
 const imgUrl = "https://dog.ceo/api/breeds/image/random/4"
 const breedUrl = 'https://dog.ceo/api/breeds/list/all'
 let dogImageContainer
-
+let magic
 
 
 
@@ -21,7 +21,14 @@ dogBreedContainer = document.querySelector('#dog-breeds')
 
   fetch( breedUrl )
   .then(response => response.json())
+  // .then(response => console.log(response.message))
   .then(response => dogBreedDisplay(response))
+
+// #####################################
+
+  document.querySelector('#dog-breeds').addEventListener('click', function(event){
+    event.target.style.color = "red"
+  })
 
 
 })
@@ -35,9 +42,15 @@ function dogImageDisplay(images) {
   }
 }
 
-function dogBreedDisplay(images) {
-  for (let image of images.message){
+function dogBreedDisplay(breeds) {
+  magic = breeds
+  for (let breed in breeds.message) {
+    // console.log(breed)
     dogBreedContainer.innerHTML +=
-    `<li></li>`
-  }
+    `<li>${breed}</li>`
+}
+
+
+
+
 }
